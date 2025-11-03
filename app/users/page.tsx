@@ -1,34 +1,15 @@
-import { cache } from 'react';
-
 import Container from '@/components/Container';
-
-import createApolloClient from '@/graphql/main';
-import { GET_ALL_USERS } from '@/graphql/queries';
-
-type User = {
-  id: string;
-  fullName: string;
-  email: string;
-  imageUrl: string | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export const getUsers = cache(async (limit = 10, offset = 0) => {
-  const client = createApolloClient();
-  const { data } = await client.query<{ users: User[] }>({
-    query: GET_ALL_USERS,
-    variables: { limit, offset },
-  });
-  return data?.users ?? [];
-});
+import { getUsers } from './actions';
 
 export default async function Page({
-  params: { limit, offset },
+  searchParams,
 }: {
-  params: { limit: number; offset: number };
+  searchParams: Promise<{ limit?: number; offset?: number }>;
 }) {
-  const users = await getUsers(10, 0);
+  const resolved = await searchParams;
+  const limit = Number(resolved.limit) || 10;
+  const offset = Number(resolved.offset) || 0;
+  const users = await getUsers(limit, offset);
 
   return (
     <Container>
