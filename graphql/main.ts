@@ -1,41 +1,38 @@
-import { ApolloClient, HttpLink, InMemoryCache, from } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloLink,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 
-import { setContext } from '@apollo/client/link/context';
-import { onError } from '@apollo/client/link/error';
+import { ErrorLink } from '@apollo/client/link/error';
 
-export const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) =>
-      console.error(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-      ),
-    );
-  }
-
-  if (networkError) {
-    console.error(`[Network error]: ${networkError}`);
-  }
+export const errorLink = new ErrorLink(({ error }) => {
+  console.error(`[GraphQL error]: ${error}`);
 });
 
-const authMiddleware = setContext(async (_, { headers }) => {
+const authMiddleware = new ApolloLink((operation, forward) => {
   const accessToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGpjdmVnYWIuc2l0ZSIsInN1YiI6ImQyMjM1MzM1LWIwODItNGI2Zi05ZGE4LWI1MWZmMzIxYjZmNiIsImlhdCI6MTcxMDczNTY1OCwiZXhwIjoxNzEwNzM5MjU4fQ.vOz4DzWvsOf8DoLtL0OvptC2J3jYfdzOiCcQPS_TSO4';
-  return {
+
+  operation.setContext({
     headers: {
-      ...headers,
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: accessToken ? `Bearer ${accessToken}` : '',
     },
-  };
+  });
+
+  return forward(operation);
 });
 
 const httpLink = new HttpLink({
   uri: 'https://users-api-5ykmhbvg3a-uc.a.run.app/graphql',
 });
+
 const cache = new InMemoryCache();
 
 const createApolloClient = () => {
   return new ApolloClient({
-    link: from([errorLink, authMiddleware, httpLink]),
+    link: ApolloLink.from([errorLink, authMiddleware, httpLink]),
     cache,
   });
 };

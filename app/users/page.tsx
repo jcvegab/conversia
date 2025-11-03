@@ -20,7 +20,7 @@ export const getUsers = cache(async (limit = 10, offset = 0) => {
     query: GET_ALL_USERS,
     variables: { limit, offset },
   });
-  return data.users;
+  return data?.users ?? [];
 });
 
 export default async function Page({
