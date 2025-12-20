@@ -42,6 +42,7 @@ export function CreateUserForm() {
     const isEmailValid = isUserEmailValid(formData.email);
     const isPasswordValid = isUserPasswordValid(formData.password);
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setErrors({
       fullName: isFullNameValid
         ? ''

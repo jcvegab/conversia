@@ -12,14 +12,14 @@ export function useUserSignInForm(): {
   const [formStatus, setFormStatus] = useState(FormStatus.Initial);
   // const { createUser } = useUsersContext();
 
-  function submitForm(user: Pick<User, 'email' | 'password'>) {
+  function submitForm(_user: Pick<User, 'email' | 'password'>) {
     setFormStatus(FormStatus.Loading);
 
     try {
       // createSession(user);
       setFormStatus(FormStatus.Success);
       toast.success('Logged in successfully! 🚀');
-    } catch (e) {
+    } catch {
       setFormStatus(FormStatus.Error);
       toast.error("Error in your credentials, can't log in! 🌋");
     }

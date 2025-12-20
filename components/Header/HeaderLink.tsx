@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import Link from 'next/link';
 
-interface LinkProps extends React.ComponentProps<typeof Link> {}
+type LinkProps = React.ComponentProps<typeof Link>;
 
 export const HeaderLink = (props: LinkProps) => {
   const { className, ...restProps } = props;

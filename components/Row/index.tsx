@@ -2,7 +2,7 @@ interface RowBaseProps {
   children: React.ReactNode;
 }
 
-interface RowContainerProps extends RowBaseProps {}
+type RowContainerProps = RowBaseProps;
 
 export const RowContainer = ({ children }: RowContainerProps) => {
   return (
@@ -12,7 +12,7 @@ export const RowContainer = ({ children }: RowContainerProps) => {
   );
 };
 
-interface RowTitleProps extends RowBaseProps {}
+type RowTitleProps = RowBaseProps;
 
 export const RowTitle = ({ children }: RowTitleProps) => {
   return (
@@ -20,7 +20,7 @@ export const RowTitle = ({ children }: RowTitleProps) => {
   );
 };
 
-interface RowDescriptionProps extends RowBaseProps {}
+type RowDescriptionProps = RowBaseProps;
 
 export const RowDescription = ({ children }: RowDescriptionProps) => {
   return (

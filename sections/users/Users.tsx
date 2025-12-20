@@ -2,7 +2,11 @@ import { UserRepository } from '@/modules/users/domain/UserRepository';
 
 import { User } from '@/modules/users/domain/User';
 
-export function Users({ repository }: { repository: UserRepository }) {
+interface UsersProps {
+  repository: UserRepository;
+}
+
+export function Users({ repository: _ }: UsersProps) {
   const users: User[] = [];
   return (
     <section>

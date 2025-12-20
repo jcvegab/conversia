@@ -50,7 +50,7 @@ type ButtonProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-export interface FormActionButtonProps extends ButtonProps {}
+export type FormActionButtonProps = ButtonProps;
 
 export const FormActionButton = (props: FormActionButtonProps) => {
   return (
