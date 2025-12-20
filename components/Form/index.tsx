@@ -3,11 +3,10 @@ type InputProps = React.DetailedHTMLProps<
   HTMLInputElement
 >;
 
-export interface FormInputProps
-  extends Pick<
-    InputProps,
-    'id' | 'type' | 'placeholder' | 'required' | 'value' | 'onChange'
-  > {
+export interface FormInputProps extends Pick<
+  InputProps,
+  'id' | 'type' | 'placeholder' | 'required' | 'value' | 'onChange'
+> {
   label: string;
 }
 
