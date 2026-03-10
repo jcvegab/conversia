@@ -3,13 +3,15 @@ import Link from 'next/link';
 import Github from './Icons/github';
 import Web from './Icons/web';
 
+const PORTFOLIO_URL = 'https://jcvegab.dev';
+
 export const Footer = () => {
   return (
     <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
       <div className="sm:flex sm:items-center sm:justify-between">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           ©&nbsp;{new Date().getFullYear()}&nbsp;
-          <Link href="https://jcvegab.site" className="hover:underline">
+          <Link href={PORTFOLIO_URL} className="hover:underline">
             Jcvegab
           </Link>
           . All Rights Reserved.
@@ -22,7 +24,7 @@ export const Footer = () => {
             <Github />
           </Link>
           <Link
-            href="https://jcvegab.site"
+            href={PORTFOLIO_URL}
             className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
           >
             <Web />
