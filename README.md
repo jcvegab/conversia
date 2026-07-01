@@ -72,8 +72,8 @@ Nota operativa: `graphql/main.ts` contiene endpoint y bearer token hardcodeados.
 
 - [Arquitectura](docs/architecture.md)
 - [Guia de desarrollo](docs/development.md)
-- [Plan de documentacion](docs/documentation-plan.md)
+- [TODOs y deuda tecnica](docs/technical-debt.md)
 
-## Codebase Memory
+## Analisis Local De Codigo
 
-Este repositorio fue indexado con `codebase-memory-mcp` como `home-jcvegab-jcvegab-projects-conversia`. El indice local queda en `.codebase-memory/`, ignorado por Git en este workspace.
+Este repositorio usa una herramienta local de analisis de codigo para exploracion estructural. No documentar nombres de indice, rutas locales ni detalles especificos de maquina.
