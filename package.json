@@ -1,7 +1,29 @@
 {
   "name": "conversia-users-frontend",
   "version": "0.1.0",
+  "description": "Frontend de gestion de usuarios de Conversia construido con Next.js, React, Apollo Client y Tailwind CSS.",
   "private": true,
+  "license": "UNLICENSED",
+  "author": "Joseph Vega <jcvegab>",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jcvegab/conversia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jcvegab/conversia/issues"
+  },
+  "homepage": "https://github.com/jcvegab/conversia#readme",
+  "keywords": [
+    "apollo-client",
+    "clean-architecture",
+    "conversia",
+    "graphql",
+    "nextjs",
+    "react",
+    "tailwindcss",
+    "typescript",
+    "users-management"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

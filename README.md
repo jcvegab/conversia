@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Conversia Users Frontend
 
-## Getting Started
+Frontend para gestion de usuarios de Conversia. La aplicacion esta construida con Next.js App Router, React, TypeScript, Apollo Client y Tailwind CSS.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 con App Router y React Compiler habilitado.
+- React 19 y TypeScript.
+- Tailwind CSS v4 via `@tailwindcss/postcss`.
+- Apollo Client para consultas GraphQL.
+- ESLint flat config, Prettier, Husky y lint-staged.
+
+## Funcionalidad actual
+
+- Ruta `/` con pagina inicial basica.
+- Ruta `/users` con lectura paginada de usuarios desde GraphQL.
+- Rutas `/login` y `/signup` con formularios de autenticacion/registro.
+- Componentes compartidos para layout, header, footer, formularios, filas y spinner.
+- Modulo `modules/users` separado por dominio, aplicacion e infraestructura.
+
+## Requisitos
+
+- Node.js compatible con Next.js 16.
+- npm. Este repositorio usa `package-lock.json` como lockfile.
+
+## Instalacion
+
+```bash
+npm install
+```
+
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run dev
+npm run lint
+npx tsc --noEmit
+npm run build
+npm run format
+```
 
-## Learn More
+No hay framework de tests configurado todavia.
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+app/                 Rutas Next.js App Router y server actions
+components/          Componentes UI compartidos
+graphql/             Cliente Apollo, fragments y queries
+hooks/               Hooks reutilizables
+modules/users/       Dominio, casos de uso y repositorio de usuarios
+sections/users/      UI y estado de feature users
+types/               Tipos compartidos
+docs/                Documentacion tecnica del repositorio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## GraphQL
 
-## Deploy on Vercel
+La ruta `/users` ejecuta `getUsers` en `app/users/actions.ts`, crea un cliente Apollo desde `graphql/main.ts` y consulta `GET_ALL_USERS`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Nota operativa: `graphql/main.ts` contiene endpoint y bearer token hardcodeados. Antes de produccion, mover esa configuracion a variables de entorno y rotar el token expuesto.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Documentacion
+
+- [Arquitectura](docs/architecture.md)
+- [Guia de desarrollo](docs/development.md)
+- [Plan de documentacion](docs/documentation-plan.md)
+
+## Codebase Memory
+
+Este repositorio fue indexado con `codebase-memory-mcp` como `home-jcvegab-jcvegab-projects-conversia`. El indice local queda en `.codebase-memory/`, ignorado por Git en este workspace.
